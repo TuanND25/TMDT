@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    db_ECommerceShopContext db_ECommerceShopContext = new db_ECommerceShopContext();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<h1>@db_ECommerceShopContext.Users.FirstOrDefault().UserEmail</h1>
+
