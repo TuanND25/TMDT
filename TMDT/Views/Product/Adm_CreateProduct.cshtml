@@ -1,0 +1,139 @@
+﻿@using TMDT.Controllers
+@using TMDT.Services
+@model TMDT.Models.Product
+
+@{
+	ViewData["Title"] = "Adm_CreateProduct";
+	CategoryService _categoryService = new CategoryService();
+	ProductImageService _productImageService = new ProductImageService();
+}
+<style>
+	.a1 {
+		width: 100px;
+		height: 110px;
+		opacity: 0;
+		position: absolute;
+		z-index: -1;
+	}
+
+	.a2 {
+		width: 100px;
+		height: 110px;
+		background-image: url('/images/add.png');
+		background-size: cover;
+		background-position: center;
+		padding: 10px 15px;
+		color: #fff;
+		cursor: pointer;
+	}
+</style>
+<h1>Create Product</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+	<div class="col-md-7">
+		<div class="row">
+			<div class="col-md-2">
+				@{
+					<div style="height: 500px; overflow-y: auto;width:120px">
+						@foreach (var x in _productImageService.GetAllProductImages())
+						{
+							<div style="margin-bottom:30px;margin-top:30px">
+								<img src="/images/@x.Url" alt="" style="width: 100px;height: 110px;" />
+							</div>
+						}
+						<input type="file" class="a1" id="imageFile" name="imageFile" onclick="uploadImage()" />
+						<label class="a2" for="imageFile"></label>
+					</div>
+				}
+			</div>
+			<div class="col-md-10">
+				<center>
+					@* @if (_pathImg != null)
+					{
+						<a data-toggle="modal" data-target="#Delete_Img_Tam">
+							<img src="/images/@_pathImg" alt="" style="width:393.6px;height:433px;margin-top:8.5px" />
+						</a>
+					}
+					else
+					{ *@
+					<img src="/images/R.png" id="previewImage" alt="" style="width:393.6px;height:433px;margin-top:8.5px" />
+					@* } *@
+				</center>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<form asp-controller="Product" asp-action="Adm_CreateProduct" enctype="multipart/form-data">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			@* <div class="form-group">
+			<label asp-for="ProductId" class="control-label"></label>
+			<input asp-for="ProductId" class="form-control" />
+			<span asp-validation-for="ProductId" class="text-danger"></span>
+			</div> *@
+			<div class="form-group" style="margin-bottom:5px">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="margin-bottom:5px">
+				<label asp-for="Description" class="control-label"></label>
+				<input asp-for="Description" class="form-control" />
+				<span asp-validation-for="Description" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="margin-bottom:5px">
+				<label asp-for="Price" class="control-label"></label>
+				<input type="text" step="0.01" class="form-control" id="price" name="Price" />
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="margin-bottom:5px">
+				<label asp-for="LastPrice" class="control-label"></label>
+				<input type="text" step="0.01" class="form-control" id="price" name="LastPrice" />
+				<span asp-validation-for="LastPrice" class="text-danger"></span>
+			</div>
+			<div class="form-group" style="margin-bottom:5px">
+				<label class="control-label">Category</label>
+				<select asp-for="CategoryId" class="form-control">
+					<option value="">-- Category --</option>
+					@foreach (var x in ViewBag.LstCate)
+					{
+						<option value="@(_categoryService.GetCategoryByCategoryName(x).CategoryId)">@x</option>
+					}
+				</select>
+			</div>	
+			<div class="form-group" style="display:flex;justify-content:center;">
+				<input type="submit" value="Create" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
+
+<script>
+	function uploadImage() {
+		var input = document.getElementById("imageFile");
+		var previewImage = document.getElementById("previewImage");
+
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				previewImage.src = e.target.result;
+				previewImage.style.display = "block";
+			};
+
+			reader.readAsDataURL(input.files[0]);
+		}
+		var t = setTimeout(uploadImage, 1);
+	}
+</script>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

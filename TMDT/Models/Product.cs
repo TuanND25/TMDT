@@ -11,7 +11,7 @@ namespace TMDT.Models
             ProductImages = new HashSet<ProductImage>();
         }
 
-        public int ProductId { get; set; }
+        public int? ProductId { get; set; }
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public decimal Price { get; set; }
