@@ -1,0 +1,99 @@
+﻿@using TMDT.Services
+@model Product
+@{
+	ViewData["Title"] = "Filter";
+	ProductImageService _productImageService = new ProductImageService();
+	var _lstImg = _productImageService.GetProductImageByProductId(Model.ProductId ?? default);
+}
+<style>
+	.number-input {
+		display: flex;
+		align-items: center;
+	}
+
+	.input-wrapper {
+		display: flex;
+		align-items: center;
+		border: 1px solid #ccc;
+		border-radius: 20px;
+		padding: 5px;
+	}
+
+	.input-field {
+		margin-left: 10px;
+		width: 50px;
+		text-align: center;
+		border: none;
+		background-color: transparent;
+		pointer-events: none;
+	}
+
+	.minus-button,
+	.plus-button {
+		width: 30px;
+		height: 30px;
+		border: none;
+		background-color: transparent;
+		color: #337ab7;
+		font-weight: bold;
+		cursor: pointer;
+	}
+
+		.minus-button:hover,
+		.plus-button:hover {
+			color: #286090;
+		}
+</style>
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-2" style="height: 760px; overflow-y: auto;text-align:center">
+				@foreach (var x in _lstImg)
+				{
+					<div style="margin-bottom:30px;margin-top:30px">
+						<img class="img-thumbnail" src="/images/@x.Url" alt="" style="width: 120px;height: 132px;" />
+					</div>
+				}
+			</div>
+			<div class="col-md-10" style="text-align:center">
+				<img class="img-thumbnail" src="/images/@_lstImg.First().Url" alt="" style="width:600px;height:760px;margin-top:8.5px" />
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<h2>@Model.Name</h2>
+		<h3 style="color:red">@Model.LastPrice$</h3>
+		<span>Số lượng</span>
+		<div class="number-input">
+			<div class="input-wrapper">
+				<button class="minus-button" onclick="truSL()">-</button>
+				<input type="number" class="input-field" id="inputSL" value="1">
+				<button class="plus-button" onclick="congSL()">+</button>
+			</div>
+		</div>
+		<button type="button" class="btn btn-secondary"
+				name="add" style="width:100%;height:50px">
+			Thêm vào giỏ
+		</button>
+		<div style="margin-top:10px">
+			<span>Mô tả</span>
+			<p style="white-space:pre-line">@Model.Description</p>
+		</div>
+	</div>
+</div>
+<script>
+	function truSL() {
+		var inputElement = document.getElementById("inputSL");
+		var currentValue = parseInt(inputElement.value);
+		if (currentValue > 1) {
+			inputElement.value = currentValue - 1;
+		}
+	}
+
+	function congSL() {
+		var inputElement = document.getElementById("inputSL");
+		var currentValue = parseInt(inputElement.value);
+		inputElement.value = currentValue + 1;
+	}
+</script>

@@ -1,0 +1,65 @@
+﻿@using TMDT.Services
+@model IEnumerable<TMDT.Models.Product>
+
+@{
+	ViewData["Title"] = "Filter";
+	ProductImageService _productImageService = new ProductImageService();
+	CategoryService _categoryService = new CategoryService();
+	var _lstCate = _categoryService.GetAllCategories().Select(c => c.Name);
+}
+
+<div class="row">
+	<div class="col-md-3">
+		<hr style="border: 1px solid orangered;">
+		<h3>TẤT CẢ DANH MỤC</h3>
+		<hr style="border: 1px solid orangered;">
+		<div class="danhmuc" style="border: 2px solid black;">
+			<ul>
+				<li>
+					<a href="/all-product">TẤT CẢ SẢN PHẨM</a>
+				</li>
+				@foreach (var item in _lstCate)
+				{
+					<li>
+						<a asp-action="FilterCate" asp-route-filter="@item">@item.ToUpper()</a>
+					</li>
+				}
+			</ul>
+		</div>
+	</div>
+
+	<div class="col-md-9">
+		<div class="row title_tee">
+			<div class="col-md-8"><h2>Tất cả sản phẩm</h2></div>
+			<div class="col-md-4">
+				<div class="search" style="width:100%">
+					<form asp-controller="Home" asp-action="SearchProduct" enctype="multipart/form-data">
+						<input placeholder="Tìm kiếm..." type="text" style="width:100%" name="search" required>
+						<button type="submit">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top:20px">
+			@foreach (var x in Model)
+			{
+				string img = _productImageService.GetAllProductImages().Where(c => c.ProductId == x.ProductId).OrderBy(c => c.Id).Select(c => c.Url).FirstOrDefault();
+				<div class="col-md-4" style="position: relative;">
+					<a asp-action="DetailProduct" asp-route-productId="@x.ProductId" style="text-decoration:none;color:black">
+						<div class="card thumnail">
+							<img src="/images/@img" class="imgthum" />
+							<div style="text-align:left">
+								<p style="margin-bottom: 15px; margin-top: 10px;padding-left:15px">@x.Name</p>
+							</div>
+							<div class="center-content1">
+								<p>@(x.LastPrice)$</p>
+							</div>
+						</div>
+					</a>
+				</div>
+			}
+		</div>
+	</div>
+</div>

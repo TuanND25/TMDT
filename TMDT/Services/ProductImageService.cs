@@ -21,7 +21,12 @@ namespace TMDT.Services
             return _context.ProductImages.FirstOrDefault(c => c.Id == ProductImageId);
         }
 
-        public bool AddProductImage(ProductImage ProductImage)
+		public List<ProductImage> GetProductImageByProductId(int ProductId)
+		{
+			return _context.ProductImages.Where(c => c.ProductId == ProductId).OrderBy(c => c.Id).ToList();
+		}
+
+		public bool AddProductImage(ProductImage ProductImage)
         {
             try
             {
