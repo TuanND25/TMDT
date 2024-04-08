@@ -83,6 +83,12 @@ namespace TMDT.Controllers
 			return View(lstSearch);
 		}
 
+		[Route("/cart")]
+		public IActionResult ShowCart()
+		{
+			return View();
+		}
+
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
