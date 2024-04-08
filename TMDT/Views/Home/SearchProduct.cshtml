@@ -7,119 +7,55 @@
 	CategoryService _categoryService = new CategoryService();
 	var _lstCate = _categoryService.GetAllCategories().Select(c => c.Name);
 }
-
-<style>
-	.discount-rectangle {
-		position: absolute;
-		top: 10px;
-		left: 10px;
-		width: 40px;
-		height: 20px;
-		background-color: red;
-		color: white;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		line-height: 40px;
-		z-index: 1;
-	}
-
-		.discount-rectangle span {
-			font-size: 14px;
-		}
-
-	.center-content1 {
-		display: flex;
-		justify-content: left;
-		padding-left: 15px;
-	}
-
-		.center-content1 p {
-			color: red;
-			font-size: 18px;
-		}
-
-	.thumnail {
-		width: 280px;
-		height: 400px;
-		text-align: center;
-		position: relative;
-		cursor: pointer;
-	}
-
-	.imgthum {
-		width: 100%;
-		height: 280px;
-		margin-bottom: 10px;
-	}
-
-	.center-content {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		height: 38vh; /* Đảm bảo phần tử cha chiếm toàn bộ chiều cao của màn hình */
-		margin-bottom: 30px;
-	}
-
-		.center-content div {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-
-	.title {
-		font-size: 35px;
-		margin-bottom: 25px;
-	}
-
-	.title1 {
-		font-size: 30px;
-		font-weight: 500;
-		margin-bottom: 15px;
-	}
-</style>
-<div class="row showsp">
+<div class="row">
 	<center>
 		<h1><b>Tìm kiếm</b></h1>
 	</center>
 	@if (Model == null || Model.Count() > 0)
 	{
-		<center>
+		<center class="mb-3">
 			<span>Có <b>@Model.Count()</b> kết quả hợp lệ cho từ khóa <b>"@ViewBag.keySearch"</b></span>
 		</center>
 
-		foreach (var x in Model)
-		{
-			string img = _productImageService.GetAllProductImages().Where(c => c.ProductId == x.ProductId).OrderBy(c => c.Id).Select(c => c.Url).FirstOrDefault();
-			<div class="col-md-3" style="position: relative;">
-				<div class="card thumnail">
-					<img src="/images/@img" class="imgthum" />
-					<div style="text-align:left">
-						<p style="margin-bottom: 15px; margin-top: 10px;padding-left:15px">@x.Name</p>
-					</div>
-					<div class="center-content1">
-						<p>@(x.LastPrice)$</p>
-					</div>
+		<div class="row">
+			@foreach (var x in Model)
+			{
+				string img = _productImageService.GetAllProductImages().Where(c => c.ProductId == x.ProductId).OrderBy(c => c.Id).Select(c => c.Url).FirstOrDefault();
+				<div class="col-md-3 mb-3">
+					<a asp-action="DetailProduct" asp-route-productId="@x.ProductId" style="text-decoration:none;color:black">
+						<div class="card">
+							<img src="/images/@img" alt="" />
+							<div class="card-body">
+								<h5 class="card-title"
+									style="white-space: nowrap;
+										   overflow: hidden;
+										   text-overflow: ellipsis;">
+									@x.Name
+								</h5>
+								<h5 class="card-text" style="color:red"><b>@(x.LastPrice)$</b></h5>
+							</div>
+						</div>
+					</a>
 				</div>
-			</div>
-		}
+			}
+		</div>
 	}
 	else
 	{
-		<br />
-		<center>
+		<center class="mb-3">
 			<h2 style="font-size:16px">Không tìm thấy kết quả phù hợp với từ khóa <b>"@ViewBag.keySearch"</b>. Vui lòng nhập từ khóa khác và thử lại!</h2>
 		</center>
-		<br />
-		<br />
-		<div class="row" style="margin-bottom:300px">
-			<center>
-				<div class="search" style="margin-left:30px;width:60%">
-					<input placeholder="Search..." type="text" style="width:100%" required>
-					<button type="submit">Go</button>
-				</div>
-			</center>
+		<div style="display:flex;justify-content:center;">
+			<div style="width:60%">
+				<center>
+					<form asp-controller="Home" asp-action="SearchProduct" enctype="multipart/form-data">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control" placeholder="Search" name="search" required>
+							<button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
+						</div>
+					</form>
+				</center>
+			</div>
 		</div>
 	}
 </div>

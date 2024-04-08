@@ -1,0 +1,86 @@
+﻿@{
+	ViewData["Title"] = "Cart";
+}
+
+<div class="row">
+	<div class="col-md-8">
+		<p style="font-size:21px;font-weight:500;font-family:Futura;margin-bottom:10px">Giỏ hàng</p>
+		@if (true)
+		{
+			<div style="display:flex;justify-content:space-between;font-family:'Times New Roman'">
+				<div style="display:flex;justify-content:center;">
+					<a href=""><img src="/images/1.png" alt="" style="width:110px;height:110px;"></a>
+					<div style="display:flex;flex-direction:column;justify-content:space-between;color:#333333;font-weight:700;font-size:17px;margin-left:20px">
+						<label>Áo 1</label>
+						10,00$
+						<b style="font-weight:600">
+							x2
+						</b>
+					</div>
+				</div>
+				<div style="display:flex;flex-direction:column;justify-content:space-between;text-align:right">
+					<label style="cursor:pointer;">Xóa sản phẩm</label>
+					<label><b style="font-size:18px">20,00$</b></label>
+				</div>
+			</div>
+			<hr style="margin-top:10px;margin-bottom:10px;height:2px" />
+			<div style="display:flex;justify-content:space-between;font-family:'Times New Roman'">
+				<div style="display:flex;justify-content:center;">
+					<a href=""><img src="/images/1.png" alt="" style="width:110px;height:110px;"></a>
+					<div style="display:flex;flex-direction:column;justify-content:space-between;color:#333333;font-weight:700;font-size:17px;margin-left:20px">
+						<label>Áo 1</label>
+						10,00$
+						<b style="font-weight:600">
+							x2
+						</b>
+					</div>
+				</div>
+				<div style="display:flex;flex-direction:column;justify-content:space-between;text-align:right">
+					<label style="cursor:pointer;">Xóa sản phẩm</label>
+					<label><b style="font-size:18px">20,00$</b></label>
+				</div>
+			</div>
+			<hr style="margin-top:10px;margin-bottom:10px;height:2px" />
+		}
+		else
+		{
+			<p style="	font-size:21px;
+					font-weight:500;
+					font-family:Futura;
+					margin-bottom:10px">Giỏ hàng</p>
+			<div style="display:flex;justify-content:center">
+				<img src="/images/noProductInCart.png" style="width:20%;" />
+			</div>
+		}
+	</div>
+	<div class="col-md-4">
+		<p style="font-size:21px;font-weight:500;font-family:Futura">Đơn hàng</p>
+		<div style="border:1px solid #333333;padding: 25px;">
+			<div class="mb-3" style="display:flex;justify-content:space-between;line-height:33px;text-align:center">
+				<label style="vertical-align:middle">Tổng tiền</label>
+				<label style="color:#e32124;font-size:22px"><b>0$</b></label>
+			</div>
+			<div>
+				<button style="	width: 100%;
+								border: none;
+								background-color: #e32124;
+								color: #ffffff;
+								padding: 15px;">
+					Thanh toán
+				</button>
+			</div>
+		</div>
+	</div>
+	<div>
+		@using (Html.BeginForm("ShowAllProduct", "Home"))
+		{
+			<button style="	color: #ffffff;
+						background-color: #333333;
+						padding: 8px 25px;
+						font-size: 15px;"
+					type="submit">
+				TIẾP TỤC MUA SẮM SẢN PHẨM KHÁC
+			</button>
+		}
+	</div>
+</div>
