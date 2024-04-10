@@ -14,24 +14,30 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TMDT</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">  <img src="~/images/9.jpg" alt="" style="width:60px"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1" style="margin-left :35% ">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house" style="margin-right:5px"></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Adm_ProductList">Product List</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Adm_ProductList"><i class="fa-brands fa-product-hunt" style="margin-right:5px"></i>Product List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShowAllProduct">All Products</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShowAllProduct"><i class="fa-solid fa-list" style="margin-right:5px"></i>All Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShowCart">Show Cart</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ShowCart"><i class="fa-solid fa-cart-shopping" style="margin-right:5px"></i> Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login"><i class="fa-solid fa-right-to-bracket" style="margin-right:5px"></i>Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="SignUp"><i class="fa-solid fa-user-plus" style="margin-right:5px"></i>Sign Up</a>
                         </li>
                     </ul>
                 </div>
@@ -44,11 +50,75 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - TMDT - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+	<footer class="text-center text-lg-start bg-light text-muted">
+		<section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom" style="margin-left:80%">
+			<div>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-facebook-f"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-twitter"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-google"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-instagram"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-linkedin"></i>
+				</a>
+				<a href="" class="me-4 text-reset">
+					<i class="fab fa-github"></i>
+				</a>
+			</div>
+			<!-- Right -->
+		</section>
+		<section class="">
+			<div class="container text-center text-md-start mt-5">
+				<div class="row mt-3">
+					<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">
+							<i class="fas fa-gem me-3"></i>ABC Unisex
+						</h6>
+						<p>
+							Chúng mình xuất hiện để đem tới mọi người một chất lượng áo tốt nhất, với giá thành hấp dẫn nhất để đưa Outerity đến với tất cả lứa tuổi và khắp mọi vùng miền đất nước.
+						</p>
+					</div>
+					
+					<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">
+							Chính sách
+						</h6>
+						<p>
+							<a href="/" class="text-reset">Chính sách đổi trả</a>
+						</p>
+						<p>
+							<a href="/" class="text-reset">Chính sách giao hàng</a>
+						</p>
+						<p>
+							<a href="/" class="text-reset">Chính sách bảo mật </a>
+						</p>
+						<p>
+							<a href="/" class="text-reset">Hướng dẫn sử dụng</a>
+						</p>
+						<p>
+							<a href="/" class="text-reset">Bảng Size</a>
+						</p>
+					</div>
+					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+						<h6 class="text-uppercase fw-bold mb-4">Liên hệ</h6>
+						<p><i class="fas fa-home me-3"></i> Đại học mở Hà Nội</p>
+						<p>
+							<i class="fas fa-envelope me-3"></i>
+							abcunisex@gmail.com
+						</p>
+						<p><i class="fas fa-phone me-3"></i>012232324</p>
+						<p><i class="fa-solid fa-paper-plane me-3"></i>Comming soon</p>
+					</div>
+				</div>
+			</div>
+		</section>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
