@@ -8,11 +8,12 @@ namespace TMDT.Controllers
 	public class LoginController : Controller
 	{
 		private readonly UserServices userServices;
-	
+		
 		
 		public LoginController()
 		{
 			userServices = new UserServices();
+
 			
 		}
         [HttpGet]
@@ -63,12 +64,22 @@ namespace TMDT.Controllers
 	
 		[Route("user/sign-up")]		
 		
-		public IActionResult SignUp(User user) 
+		public IActionResult SignUp(SignUpUser user) 
 		{
 			var CheckExists = userServices.GetUsersByUserName(user.UserName);
 			if (CheckExists == null)
 			{
-				userServices.AddUser(user);
+				User newUser = new User();
+				newUser.UserName = user.UserName;
+				newUser.UserPassword = user.UserPassword;
+				newUser.UserEmail = user.UserEmail;
+				newUser.UserRole = "user";
+				newUser.AddressInfo = user.AddressInfo;
+				newUser.FullName = user.FullName;
+				newUser.Gender = user.Gender;
+				newUser.PhoneNum = user.PhoneNum;
+
+				userServices.AddUser(newUser);
 				LoginUser loginuer = new LoginUser();
 				loginuer.Username = user.UserName;
 				loginuer.Password = user.UserPassword;
