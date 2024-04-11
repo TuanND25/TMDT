@@ -1,4 +1,4 @@
-﻿ @model TMDT.Models.User
+﻿ @model TMDT.ViewModels.SignUpUser
 
 
 <div class="container">
@@ -12,27 +12,31 @@
                     <form asp-controller="Login" asp-action="SignUp">
                         <div class="form-group">
                             <label for="username">Tên đăng nhập</label>
-                            <input asp-for="UserName" type="text" class="form-control" id="username" name="username" required>
+                            <input asp-for="UserName" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Mật khẩu</label>
-                            <input asp-for="UserPassword" type="password" class="form-control" id="password" name="password" required>
+                            <input asp-for="UserPassword" type="password" class="form-control" required>
                         </div>
                          <div class="form-group">
                             <label for="password">Email</label>
-                            <input asp-for ="UserEmail" type="text" class="form-control" id="password" name="password" required>
+                            <input asp-for ="UserEmail" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Họ và tên</label>
-                            <input asp-for="FullName" type="text" class="form-control" id="password" name="password" required>
+                            <input asp-for="FullName" type="text" class="form-control"required>
                         </div>
                          <div class="form-group">
                             <label for="password">Địa chỉ</label>
-                            <input asp-for="AddressInfo" type="text" class="form-control" id="password" name="password" required>
+                            <input asp-for="AddressInfo" type="text" class="form-control"  required>
                         </div>
                          <div class="form-group">
                             <label for="password">Số điện thoại</label>
-                            <input asp-for="PhoneNum" type="text" class="form-control" id="password" name="password" required>
+                            <input asp-for="PhoneNum" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for ="Gender" type="radio" value="true">Nam</input>
+                            <input asp-for ="Gender" type="radio" value="false">Nữ</input>
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
                     </form>
