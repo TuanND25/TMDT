@@ -28,6 +28,7 @@ namespace TMDT.Controllers
 		
 		public  IActionResult Login(LoginUser loginUser)
 		{
+			ViewBag.Message = string.Empty;
 			var userLogin = userServices.GetUsersByUserName(loginUser.Username);
 			if (userLogin != null && userLogin.UserPassword == loginUser.Password)
 			{
@@ -38,7 +39,7 @@ namespace TMDT.Controllers
 			}
 			else
 			{
-				ViewBag.Message = string.Empty;	
+				
 				ViewBag.Message = "Tên tài khoản hoặc mật khẩu không chính xác";
 				return View();
 			}
@@ -66,6 +67,7 @@ namespace TMDT.Controllers
 		
 		public IActionResult SignUp(SignUpUser user) 
 		{
+			ViewBag.Message =string.Empty;
 			var CheckExists = userServices.GetUsersByUserName(user.UserName);
 			if (CheckExists == null)
 			{
@@ -88,8 +90,9 @@ namespace TMDT.Controllers
 			}
 			else
 			{
-				ViewBag.Message = string.Empty;
+				
 				ViewBag.Message = "Tên đăng nhập đã tồn tại vui lòng chọn tên đăng nhập khác";
+				
 				return View();
 			}
 		}
