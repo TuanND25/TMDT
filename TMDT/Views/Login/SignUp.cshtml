@@ -38,8 +38,14 @@
                             <input asp-for ="Gender" type="radio" value="true">Nam</input>
                             <input asp-for ="Gender" type="radio" value="false">Nữ</input>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                        <button style="margin-left:40%" type="submit" class="btn btn-primary btn-block">Đăng ký</button>
                     </form>
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="alert alert-danger" role="alert" >
+                            @ViewBag.Message
+                        </div>
+                    }
                 </div>
             </div>
         </div>
