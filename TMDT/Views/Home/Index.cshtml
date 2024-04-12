@@ -1,6 +1,13 @@
-﻿@{
+﻿@using TMDT.Services;
+@model IEnumerable<TMDT.Models.Product>
+
+
+@{
 	ViewData["Title"] = "Home Page";
 	db_ECommerceShopContext db_ECommerceShopContext = new db_ECommerceShopContext();
+	ProductImageService _productImageService = new ProductImageService();
+
+
 }
 
 <div style="margin-top:30px;">
@@ -58,7 +65,28 @@
 	</div>
 </div>
 @*Bạn thêm show sản phẩm ở chỗ này nhé*@
-
+<div class="row">
+	@foreach (var a in Model)
+	{
+		string img = _productImageService.GetAllProductImages().Where(c => c.ProductId == a.ProductId).OrderBy(c => c.Id).Select(c => c.Url).FirstOrDefault();
+		<div class="col-sm-6 col-md-4 col-lg-3">
+			<a asp-action="DetailProduct" asp-route-productId="@a.ProductId" style="text-decoration:none;color:black">
+				<div class="card">
+					<img src="~/images/@img" alt="" />
+					<div class="card-body">
+						<h5 class="card-title"
+						style="white-space: nowrap;
+										   overflow: hidden;
+										   text-overflow: ellipsis;">
+							@a.Name
+						</h5>
+						<h5 class="card-text" style="color:red"><b>@(a.LastPrice)$</b></h5>
+					</div>
+				</div>
+			</a>
+		</div>
+	}
+</div>
 
 
 

@@ -22,7 +22,8 @@ namespace TMDT.Controllers
 
 		public IActionResult Index()
 		{
-			return View();
+			var lstprd = _productService.GetAllProducts();
+			return View(lstprd);
 		}
 
 		[Route("all-product")]
